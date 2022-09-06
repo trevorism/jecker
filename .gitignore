@@ -4,3 +4,4 @@ build/
 classes/
 *.iml
 out/
+src/main/resources/secrets.properties

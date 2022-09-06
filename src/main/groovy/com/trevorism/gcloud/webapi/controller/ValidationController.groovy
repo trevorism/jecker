@@ -16,11 +16,13 @@ import javax.ws.rs.Path
 import javax.ws.rs.Produces
 import javax.ws.rs.core.MediaType
 import java.util.concurrent.TimeUnit
+import java.util.logging.Logger
 
 @Api("Validation Operations")
 @Path("/validation")
 class ValidationController {
 
+    private static final Logger log = Logger.getLogger(ValidationController.class.name)
     public static final int TWO_HOURS_SECONDS = 2 * 60 * 60
     private SecureHttpClient httpClient = new DefaultSecureHttpClient()
     private Gson gson = new Gson()
@@ -43,10 +45,13 @@ class ValidationController {
         def jobNames = ["acceptance-schedule", "acceptance-eventhub"]
         boolean valid = true
         jobNames.each{app ->
-             valid = valid && isAppValid(app)
+            boolean appValid = isAppValid(app)
+            log.info("Jecker run against ${app} is valid?: ${appValid}")
+            valid = valid && appValid
         }
 
         if(!valid){
+            log.info("Jecker will add an error to the errors API.")
             String json = gson.toJson(new TestError([source: "jecker", message: "${jobNames} are not passing or were not run within the last two hours."]))
             httpClient.post("https://testing.trevorism.com/api/error", json)
         }

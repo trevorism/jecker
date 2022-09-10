@@ -18,4 +18,5 @@ class RootControllerTest {
         RootController rootController = new RootController()
         assert rootController.ping() == "pong"
     }
+
 }

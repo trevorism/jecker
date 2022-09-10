@@ -3,12 +3,9 @@ package com.trevorism.gcloud.webapi.controller
 import com.google.gson.Gson
 import com.trevorism.gcloud.webapi.model.JobInfo
 import com.trevorism.gcloud.webapi.model.TestError
-import com.trevorism.http.HttpClient
-import com.trevorism.http.JsonHttpClient
 import com.trevorism.https.DefaultSecureHttpClient
 import com.trevorism.https.SecureHttpClient
 import io.swagger.annotations.Api
-import org.apache.tools.ant.taskdefs.condition.Http
 
 import javax.ws.rs.GET
 import javax.ws.rs.POST
@@ -38,7 +35,6 @@ class ValidationController {
     @Produces(MediaType.APPLICATION_JSON)
     boolean isValid() {
         validate()
-
     }
 
     boolean validate() {
@@ -65,7 +61,6 @@ class ValidationController {
         Date now = new Date()
 
         long diff = TimeUnit.SECONDS.convert(now.getTime() - info.date, TimeUnit.MILLISECONDS)
-        println diff
 
         if(info.result != "SUCCESS" || (diff > TWO_HOURS_SECONDS))
             return false

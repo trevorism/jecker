@@ -27,7 +27,7 @@ jobs:
       - name: Auth with google
         uses: 'google-github-actions/auth@v0'
         with:
-          service_account: 'trevorism-testing@appspot.gserviceaccount.com'
+          service_account: 'github-trevorism-testing@trevorism-testing.iam.gserviceaccount.com'
           workload_identity_provider: 'projects/729203316942/locations/global/workloadIdentityPools/github-trevorism-testing-pool/providers/ghism-testing-provider'
 
       - name: Build with Gradle

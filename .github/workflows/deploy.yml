@@ -24,6 +24,7 @@ jobs:
       - name: Chmod gradlew
         run: chmod +x ./gradlew
 
+      - name: Auth with google
       - uses: 'google-github-actions/auth@v0'
         with:
           service_account: 'github-trevorism-testing@trevorism-testing.iam.gserviceaccount.com'

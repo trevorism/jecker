@@ -1,5 +1,7 @@
 package com.trevorism.gcloud.webapi.controller
 
+import com.trevorism.secure.ClasspathBasedPropertiesProvider
+import com.trevorism.secure.PropertiesProvider
 import io.swagger.annotations.Api
 import io.swagger.annotations.ApiOperation
 import io.swagger.annotations.Contact
@@ -43,5 +45,13 @@ class RootController {
     @Path("help")
     Response help(){
         Response.temporaryRedirect(new URI("/swagger/index.html")).build()
+    }
+
+    @ApiOperation(value = "Returns 'pong' if the application is alive")
+    @GET
+    @Path("clientId")
+    @Produces(MediaType.APPLICATION_JSON)
+    String getClientId(){
+        new ClasspathBasedPropertiesProvider().getProperty("clientId")
     }
 }

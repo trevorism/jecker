@@ -17,3 +17,4 @@ jobs:
         service_account: 'github-trevorism-testing@trevorism-testing.iam.gserviceaccount.com'
         workload_identity_provider: 'projects/729203316942/locations/global/workloadIdentityPools/github-trevorism-testing-pool/providers/trevorism-testing-provider'
         version: 0-0-3
+        run_acceptance: true

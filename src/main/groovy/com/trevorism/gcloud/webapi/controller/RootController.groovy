@@ -46,12 +46,5 @@ class RootController {
     Response help(){
         Response.temporaryRedirect(new URI("/swagger/index.html")).build()
     }
-
-    @ApiOperation(value = "Returns 'pong' if the application is alive")
-    @GET
-    @Path("clientId")
-    @Produces(MediaType.APPLICATION_JSON)
-    String getClientId(){
-        new ClasspathBasedPropertiesProvider().getProperty("clientId")
-    }
+    
 }

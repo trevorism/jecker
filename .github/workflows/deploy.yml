@@ -9,8 +9,11 @@ on:
 jobs:
   call-deliver:
     uses: trevorism/actions-workflows/.github/workflows/deploy.yml@master
-    secrets: inherit
+    secrets:
+      CLIENT_ID: ${{secrets.CLIENT_ID}}
+      CLIENT_SECRET: ${{secrets.CLIENT_SECRET}}
+      SIGNING_KEY: ${{secrets.SIGNING_KEY}}
     with:
-      service_account: 'github-trevorism-testing@trevorism-testing.iam.gserviceaccount.com'
-      workload_identity_provider: 'projects/729203316942/locations/global/workloadIdentityPools/github-trevorism-testing-pool/providers/trevorism-testing-provider'
-      version: 0-0-3
+        service_account: 'github-trevorism-testing@trevorism-testing.iam.gserviceaccount.com'
+        workload_identity_provider: 'projects/729203316942/locations/global/workloadIdentityPools/github-trevorism-testing-pool/providers/trevorism-testing-provider'
+        version: 0-0-3

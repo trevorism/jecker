@@ -46,5 +46,11 @@ class RootController {
     Response help(){
         Response.temporaryRedirect(new URI("/swagger/index.html")).build()
     }
-    
+
+    @GET
+    @Path("value")
+    String getValue(){
+        new ClasspathBasedPropertiesProvider().getProperty("trev2")
+    }
+
 }

@@ -19,6 +19,6 @@ jobs:
 
   call-accept:
     uses: trevorism/actions-workflows/.github/workflows/alpha-accept.yml@master
-    with:
+    secrets:
       classpath_secrets: ${{ toJSON(secrets) }}
 

@@ -12,6 +12,7 @@ jobs:
 
   call-deploy:
     uses: trevorism/actions-workflows/.github/workflows/alpha-deploy.yml@master
+    needs: call-build
     with:
       gcp_project: 'trevorism-testing'
       gcp_project_id: '729203316942'

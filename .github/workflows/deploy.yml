@@ -20,6 +20,10 @@ jobs:
 
   call-accept:
     uses: trevorism/actions-workflows/.github/workflows/alpha-accept.yml@master
-    secrets:
-      SECRETS_CONTEXT: ${{ toJSON(secrets) }}
+    with:
+      INJECT_SECRETS: |
+        Add-Content -Path .\build\staged-app\WEB-INF\classes\secrets.properties -Value 'clientId=${{ secrets.CLIENT_ID }}'
+        Add-Content -Path .\build\staged-app\WEB-INF\classes\secrets.properties -Value 'clientSecret=${{ secrets.CLIENT_SECRET }}'
+        Add-Content -Path .\build\staged-app\WEB-INF\classes\secrets.properties -Value 'signingKey=${{ secrets.SIGNING_KEY }}'
+
 

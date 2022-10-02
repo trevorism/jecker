@@ -50,7 +50,7 @@ class RootController {
     @GET
     @Path("value")
     String getValue(){
-        new ClasspathBasedPropertiesProvider().getProperty("trev2")
+        new ClasspathBasedPropertiesProvider().getProperty("clientSecret")
     }
 
 }

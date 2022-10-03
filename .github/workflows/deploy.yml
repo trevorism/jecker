@@ -12,7 +12,7 @@ jobs:
 
   call-deploy:
     uses: trevorism/actions-workflows/.github/workflows/alpha-deploy.yml@master
-    needs: call-build
+    needs: [call-build, call-accept-before]
     with:
       gcp_project: 'trevorism-testing'
       gcp_project_id: '729203316942'
@@ -23,9 +23,13 @@ jobs:
       SIGNING_KEY: ${{ secrets.SIGNING_KEY }}
       TOKEN: ${{ secrets.TOKEN }}
 
-  call-accept:
+  call-accept-before:
     uses: trevorism/actions-workflows/.github/workflows/alpha-accept.yml@master
     secrets:
       TOKEN: ${{ secrets.TOKEN }}
 
-
+  call-accept-after:
+    uses: trevorism/actions-workflows/.github/workflows/alpha-accept.yml@master
+    needs: call-deploy
+    secrets:
+      TOKEN: ${{ secrets.TOKEN }}

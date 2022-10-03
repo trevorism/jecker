@@ -17,13 +17,15 @@ jobs:
       gcp_project: 'trevorism-testing'
       gcp_project_id: '729203316942'
       version: '0-2-0'
+    secrets:
+      CLIENT_ID: ${{ secrets.CLIENT_ID }}
+      CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
+      SIGNING_KEY: ${{ secrets.SIGNING_KEY }}
+      TOKEN: ${{ secrets.TOKEN }}
 
   call-accept:
     uses: trevorism/actions-workflows/.github/workflows/alpha-accept.yml@master
-    with:
-      INJECT_SECRETS: |
-        Add-Content -Path .\build\staged-app\WEB-INF\classes\secrets.properties -Value 'clientId=${{ secrets.CLIENT_ID }}'
-        Add-Content -Path .\build\staged-app\WEB-INF\classes\secrets.properties -Value 'clientSecret=${{ secrets.CLIENT_SECRET }}'
-        Add-Content -Path .\build\staged-app\WEB-INF\classes\secrets.properties -Value 'signingKey=${{ secrets.SIGNING_KEY }}'
+    secrets:
+      TOKEN: ${{ secrets.TOKEN }}
 
 
